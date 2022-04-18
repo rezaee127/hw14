@@ -17,9 +17,13 @@
         tools:layout="@layout/fragment_detail" />
     <fragment
         android:id="@+id/searchWordFragment"
-        android:name="ui.SearchWordFragment"
+        android:name="ui.MainFragment"
         android:label="Search Word"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_searchWordFragment_to_addWordFragment"
+            app:destination="@id/addWordFragment" />
+    </fragment>
     <fragment
         android:id="@+id/splashFragment"
         android:name="ui.SplashFragment"
