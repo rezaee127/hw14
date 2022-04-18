@@ -1,3 +1,5 @@
+package repository
+
 import android.content.Context
 import database.AppDatabase
 import database.WordDao
@@ -8,9 +10,10 @@ object Repository {
     var wordDao: WordDao? = null
 
 
-    fun initDB(context: Context) {
+    fun initDB(context: Context):AppDatabase? {
         db = AppDatabase.getMyDataBase(context)
         wordDao = db?.wordDao()
+        return db
     }
 
     fun insert(word:Word){

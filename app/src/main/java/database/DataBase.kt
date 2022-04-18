@@ -11,8 +11,6 @@ import model.Word
 abstract class AppDatabase : RoomDatabase() {
     abstract fun wordDao(): WordDao
 
-
-
     companion object {
         private var INSTANCE: AppDatabase? = null
 

@@ -24,9 +24,4 @@
             android:id="@+id/action_searchWordFragment_to_addWordFragment"
             app:destination="@id/addWordFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/splashFragment"
-        android:name="ui.SplashFragment"
-        android:label="Splash"
-        tools:layout="@layout/fragment_splash" />
 </navigation>
