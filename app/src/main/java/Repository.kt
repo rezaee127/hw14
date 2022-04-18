@@ -1,6 +1,7 @@
 import android.content.Context
 import database.AppDatabase
 import database.WordDao
+import model.Word
 
 object Repository {
     var db: AppDatabase? = null
@@ -12,6 +13,9 @@ object Repository {
         wordDao = db?.wordDao()
     }
 
+    fun insert(word:Word){
+        wordDao?.insert(word)
+    }
 
 
 }

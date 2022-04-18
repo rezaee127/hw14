@@ -11,7 +11,7 @@ import model.Word
 @Dao
 interface WordDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(question: Word)
+    fun insert(word: Word)
 
     @Query("SELECT COUNT(*) FROM Word" )
     fun getCountQuestion():Int
