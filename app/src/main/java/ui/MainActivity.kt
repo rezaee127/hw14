@@ -21,11 +21,11 @@ class MainActivity : AppCompatActivity() {
     private fun splash() {
         supportActionBar?.hide()
         binding.splashIcon.alpha=0f
-        binding.splashIcon.animate().setDuration(1500).alpha(1f).withEndAction {
+        binding.splashIcon.animate().setDuration(2000).alpha(1f).withEndAction {
             binding.fragmentContainerView.visibility= View.VISIBLE
             binding.splashIcon.visibility=View.GONE
             supportActionBar?.show()
-            overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out)
+            overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right)
         }
 
     }

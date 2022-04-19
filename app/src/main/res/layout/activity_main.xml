@@ -7,7 +7,7 @@
     tools:context="ui.MainActivity">
     android android android:layout_centerHorizontal:layout_centerHorizontal:layout_centerHorizontal :layout_centerHorizontal :layout_centerHorizontal:layout_centerHorizontal :layout_centerHorizontal :layout_centerHorizontal:layout_centerHorizontal :layout_centerHorizontal :layout_centerHorizontal:layout_centerHorizontal ="true" ="true"="true"="true" ="true"android android android:layout_centerVertical:layout_centerVertical:layout_centerVertical :layout_centerVertical :layout_centerVertical:layout_centerVertical :layout_centerVertical :layout_centerVertical:layout_centerVertical :layout_centerVertical:layout_centerVertical ="true" ="true"="true"="true" ="true"android android android:src:src :src="@="@="@drawable drawable drawable drawabledrawable/ic_android_greenic_android_green ic_android_green ic_android_greenic_android_green ic_android_green ic_android_greenic_android_greenic_android_green ic_android_green"
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/splashIcon"
         android:layout_width="150dp"
         android:layout_height="150dp"
@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_translate_24" />
+        android:src="@drawable/a15" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
