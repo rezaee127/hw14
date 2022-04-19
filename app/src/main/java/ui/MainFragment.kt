@@ -66,7 +66,7 @@ class MainFragment : Fragment() {
                 dialog.show(requireActivity().supportFragmentManager, "NoticeDialogFragment")
             }else{
                 val id=vModel.searchWord(binding.editTextSearch.text.toString())
-                val bundle= bundleOf("id" to "$id")
+                val bundle= bundleOf("id" to id)
                 findNavController().navigate(R.id.action_searchWordFragment_to_detailFragment,bundle)
             }
         }

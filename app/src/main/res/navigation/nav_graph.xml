@@ -14,7 +14,11 @@
         android:id="@+id/detailFragment"
         android:name="ui.DetailFragment"
         android:label="Detail"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail" >
+        <action
+            android:id="@+id/action_detailFragment_to_searchWordFragment"
+            app:destination="@id/searchWordFragment" />
+    </fragment>
     <fragment
         android:id="@+id/searchWordFragment"
         android:name="ui.MainFragment"

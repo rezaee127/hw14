@@ -28,4 +28,16 @@ class MainViewModel(app: Application):AndroidViewModel(app) {
         return Repository.search(word)
     }
 
+    fun getWord(id:Int): Word?{
+        return Repository.getWord(id)
+    }
+
+    fun update(word: Word){
+        Repository.update(word)
+    }
+
+    fun deleteWord(word:Word){
+        Repository.deleteWord(word)
+    }
+
 }

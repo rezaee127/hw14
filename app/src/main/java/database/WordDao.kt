@@ -1,10 +1,7 @@
 package database
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import model.Word
 
 
@@ -12,6 +9,9 @@ import model.Word
 interface WordDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(word: Word)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun update(word: Word)
 
     @Query("SELECT COUNT(*) FROM Word" )
     fun getCountWord():Int
@@ -25,5 +25,8 @@ interface WordDao {
 
     @Query("SELECT * FROM Word WHERE id IN(:id)")
     fun getWord(id:Int): Word
+
+    @Delete
+    fun delete(word:Word)
 
 }

@@ -29,5 +29,17 @@ object Repository {
         return wordDao?.search(word)
     }
 
+    fun getWord(id:Int): Word?{
+       return wordDao?.getWord(id)
+    }
+
+    fun update(word: Word){
+        wordDao?.update(word)
+    }
+
+    fun deleteWord(word:Word){
+        wordDao?.delete(word)
+    }
+
 
 }
