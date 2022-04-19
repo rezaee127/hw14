@@ -2,6 +2,7 @@ package viewModels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import model.Word
 import repository.Repository
 
@@ -12,10 +13,19 @@ class MainViewModel(app: Application):AndroidViewModel(app) {
 
     init {
         Repository.initDB(app.applicationContext)
+
     }
 
     fun insert(word:Word){
         Repository.insert(word)
+    }
+
+    fun getCountWordLiveData(): LiveData<Int>?{
+        return  Repository.getCountWordLiveData()
+    }
+
+    fun searchWord(word:String):Int?{
+        return Repository.search(word)
     }
 
 }

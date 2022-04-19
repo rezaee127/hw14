@@ -1,6 +1,7 @@
 package repository
 
 import android.content.Context
+import androidx.lifecycle.LiveData
 import database.AppDatabase
 import database.WordDao
 import model.Word
@@ -18,6 +19,14 @@ object Repository {
 
     fun insert(word:Word){
         wordDao?.insert(word)
+    }
+
+    fun getCountWordLiveData(): LiveData<Int>?{
+        return  wordDao?.getCountWordLiveData()
+    }
+
+    fun search(word:String):Int?{
+        return wordDao?.search(word)
     }
 
 
