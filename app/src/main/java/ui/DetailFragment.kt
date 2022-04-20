@@ -49,30 +49,42 @@ class DetailFragment : Fragment() {
             binding.editTextDescription.setText(it.description)
         }
 
+        edit(id)
+        delete(id)
+        back()
+    }
 
+    private fun back() {
+        binding.buttonBack.setOnClickListener {
+            findNavController().navigate(R.id.action_detailFragment_to_searchWordFragment)
+        }
+    }
+
+
+    private fun edit(id:Int) {
         binding.buttonEdit.setOnClickListener {
 
-            when{
-                binding.editTextWord.text.isNullOrBlank()-> binding.editTextWord.error="کلمه را وارد کنید"
-                binding.editTextMeaning.text.isNullOrBlank()-> binding.editTextMeaning.error="معنی را وارد کنید"
-                binding.editTextSynonyms.text.isNullOrBlank()-> binding.editTextSynonyms.error="مترادف را وارد کنید"
+            when {
+                binding.editTextWord.text.isNullOrBlank() -> binding.editTextWord.error = "کلمه را وارد کنید"
+                binding.editTextMeaning.text.isNullOrBlank() -> binding.editTextMeaning.error = "معنی را وارد کنید"
+                binding.editTextSynonyms.text.isNullOrBlank() -> binding.editTextSynonyms.error = "مترادف را وارد کنید"
 
                 else -> {
-                    vModel.update(
-                        Word(
-                            id, binding.editTextWord.text.toString(),
+                    vModel.update(Word(id, binding.editTextWord.text.toString(),
                             binding.editTextMeaning.text.toString(),
                             binding.editTextSynonyms.text.toString(),
                             binding.editTextExample.text.toString(),
-                            binding.editTextDescription.text.toString()
-                        )
-                    )
+                            binding.editTextDescription.text.toString()))
                     Toast.makeText(requireContext(), "ویرایش کلمه انجام شد", Toast.LENGTH_SHORT)
                         .show()
                     findNavController().navigate(R.id.action_detailFragment_to_searchWordFragment)
                 }
+            }
         }
+    }
 
+
+    private fun delete(id:Int){
         binding.buttonDelete.setOnClickListener {
             vModel.deleteWord(Word(id,binding.editTextWord.text.toString(),
                 binding.editTextMeaning.text.toString(),
