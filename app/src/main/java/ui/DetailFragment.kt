@@ -40,6 +40,7 @@ class DetailFragment : Fragment() {
 
     private fun initView() {
         val id=requireArguments().getInt("id")
+
         vModel.getWord(id).let {
             binding.editTextWord.setText(it.word)
             binding.editTextMeaning.setText(it.Meaning)
@@ -48,16 +49,28 @@ class DetailFragment : Fragment() {
             binding.editTextDescription.setText(it.description)
         }
 
+
         binding.buttonEdit.setOnClickListener {
 
-            vModel.update(Word(id,binding.editTextWord.text.toString(),
-                binding.editTextMeaning.text.toString(),
-                binding.editTextSynonyms.text.toString(),
-                binding.editTextExample.text.toString(),
-                binding.editTextDescription.text.toString()))
+            when{
+                binding.editTextWord.text.isNullOrBlank()-> binding.editTextWord.error="کلمه را وارد کنید"
+                binding.editTextMeaning.text.isNullOrBlank()-> binding.editTextMeaning.error="معنی را وارد کنید"
+                binding.editTextSynonyms.text.isNullOrBlank()-> binding.editTextSynonyms.error="مترادف را وارد کنید"
 
-            Toast.makeText(requireContext(),"ویرایش کلمه انجام شد", Toast.LENGTH_SHORT).show()
-            findNavController().navigate(R.id.action_detailFragment_to_searchWordFragment)
+                else -> {
+                    vModel.update(
+                        Word(
+                            id, binding.editTextWord.text.toString(),
+                            binding.editTextMeaning.text.toString(),
+                            binding.editTextSynonyms.text.toString(),
+                            binding.editTextExample.text.toString(),
+                            binding.editTextDescription.text.toString()
+                        )
+                    )
+                    Toast.makeText(requireContext(), "ویرایش کلمه انجام شد", Toast.LENGTH_SHORT)
+                        .show()
+                    findNavController().navigate(R.id.action_detailFragment_to_searchWordFragment)
+                }
         }
 
         binding.buttonDelete.setOnClickListener {
@@ -71,6 +84,5 @@ class DetailFragment : Fragment() {
             findNavController().navigate(R.id.action_detailFragment_to_searchWordFragment)
         }
     }
-
 
 }

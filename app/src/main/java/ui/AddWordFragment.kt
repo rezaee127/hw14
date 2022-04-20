@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import com.example.hw14.R
 import com.example.hw14.databinding.FragmentAddWordBinding
 import model.Word
 import viewModels.MainViewModel
@@ -52,6 +54,7 @@ class AddWordFragment : Fragment() {
                         binding.editTextExample.text.toString(),binding.editTextDescription.text.toString()))
 
                     Toast.makeText(requireActivity(),"کلمه ذخیره شد", Toast.LENGTH_SHORT).show()
+                    findNavController().navigate(R.id.action_addWordFragment_to_searchWordFragment)
                 }
             }
 

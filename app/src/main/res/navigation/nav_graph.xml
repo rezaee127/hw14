@@ -9,7 +9,11 @@
         android:id="@+id/addWordFragment"
         android:name="ui.AddWordFragment"
         android:label="Add Word"
-        tools:layout="@layout/fragment_add_word" />
+        tools:layout="@layout/fragment_add_word" >
+        <action
+            android:id="@+id/action_addWordFragment_to_searchWordFragment"
+            app:destination="@id/searchWordFragment" />
+    </fragment>
     <fragment
         android:id="@+id/detailFragment"
         android:name="ui.DetailFragment"
