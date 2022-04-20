@@ -29,4 +29,7 @@ interface WordDao {
     @Delete
     fun delete(word:Word)
 
+    @Query("DELETE FROM Word WHERE id=(:id)")
+    fun deleteById(id:Int)
+
 }

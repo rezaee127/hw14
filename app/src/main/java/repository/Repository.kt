@@ -37,9 +37,13 @@ object Repository {
         wordDao.update(word)
     }
 
-    fun deleteWord(word:Word){
-        wordDao.delete(word)
+    fun deleteById(id:Int){
+        wordDao.deleteById(id)
     }
+
+//    fun deleteWord(word:Word){
+//        wordDao.delete(word)
+//    }
 
 
 }

@@ -86,12 +86,7 @@ class DetailFragment : Fragment() {
 
     private fun delete(id:Int){
         binding.buttonDelete.setOnClickListener {
-            vModel.deleteWord(Word(id,binding.editTextWord.text.toString(),
-                binding.editTextMeaning.text.toString(),
-                binding.editTextSynonyms.text.toString(),
-                binding.editTextExample.text.toString(),
-                binding.editTextDescription.text.toString()))
-
+            vModel.deleteById(id)
             Toast.makeText(requireContext(),"حذف کلمه انجام شد", Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_detailFragment_to_searchWordFragment)
         }

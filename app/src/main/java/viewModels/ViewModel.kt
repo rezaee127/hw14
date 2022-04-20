@@ -36,8 +36,12 @@ class MainViewModel(app: Application):AndroidViewModel(app) {
         Repository.update(word)
     }
 
-    fun deleteWord(word:Word){
-        Repository.deleteWord(word)
+    fun deleteById(id:Int){
+        Repository.deleteById(id)
     }
+
+//    fun deleteWord(word:Word){
+//        Repository.deleteWord(word)
+//    }
 
 }
