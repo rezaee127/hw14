@@ -20,15 +20,15 @@ class MainViewModel(app: Application):AndroidViewModel(app) {
         Repository.insert(word)
     }
 
-    fun getCountWordLiveData(): LiveData<Int>?{
+    fun getCountWordLiveData(): LiveData<Int>{
         return  Repository.getCountWordLiveData()
     }
 
-    fun searchWord(word:String):Int?{
+    fun searchWord(word:String):Int{
         return Repository.search(word)
     }
 
-    fun getWord(id:Int): Word?{
+    fun getWord(id:Int): Word{
         return Repository.getWord(id)
     }
 

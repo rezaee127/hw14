@@ -41,11 +41,11 @@ class DetailFragment : Fragment() {
     private fun initView() {
         val id=requireArguments().getInt("id")
         vModel.getWord(id).let {
-            binding.editTextWord.setText(it?.word)
-            binding.editTextMeaning.setText(it?.Meaning)
-            binding.editTextSynonyms.setText(it?.synonyms)
-            binding.editTextExample.setText(it?.example)
-            binding.editTextDescription.setText(it?.description)
+            binding.editTextWord.setText(it.word)
+            binding.editTextMeaning.setText(it.Meaning)
+            binding.editTextSynonyms.setText(it.synonyms)
+            binding.editTextExample.setText(it.example)
+            binding.editTextDescription.setText(it.description)
         }
 
         binding.buttonEdit.setOnClickListener {

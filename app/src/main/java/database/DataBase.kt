@@ -12,28 +12,30 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun wordDao(): WordDao
 
     companion object {
+        @Volatile
         private var INSTANCE: AppDatabase? = null
 
-        fun getMyDataBase(context: Context): AppDatabase? {
-            if (INSTANCE == null){
-                synchronized(AppDatabase::class){
-                    INSTANCE =
-                        Room.databaseBuilder(context.applicationContext,
-                            AppDatabase::class.java, "MyDB")
-                            .allowMainThreadQueries()
-                            .fallbackToDestructiveMigration()
-                            .build()
-                }
+        fun getMyDataBase(context: Context): AppDatabase {
+            val tempInstance = INSTANCE
+            if (tempInstance != null)
+                return tempInstance
+
+            synchronized(AppDatabase::class) {
+                val instance = Room.databaseBuilder(
+                    context.applicationContext,
+                    AppDatabase::class.java, "MyDb"
+                )
+                    .allowMainThreadQueries()
+                    .build()
+                INSTANCE = instance
+                return instance
             }
-            return INSTANCE
         }
 
 
-
-        fun destroyDataBase(){
+        fun destroyDataBase() {
             INSTANCE = null
         }
 
     }
-
 }

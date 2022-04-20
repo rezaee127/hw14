@@ -1,5 +1,6 @@
 package ui
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -38,13 +39,14 @@ class MainFragment : Fragment() {
     }
 
 
+    @SuppressLint("SetTextI18n")
     private fun initView() {
 
         binding.floatingActionButton.setOnClickListener {
             findNavController().navigate(R.id.action_searchWordFragment_to_addWordFragment)
         }
 
-        vModel.getCountWordLiveData()?.observe(requireActivity()){
+        vModel.getCountWordLiveData().observe(requireActivity()){
             binding.textViewCountWord.text="تعداد کلمات : $it"
             if (it==0){
                 binding.buttonSearch.isEnabled=false
