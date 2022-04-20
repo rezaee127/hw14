@@ -78,6 +78,7 @@
             android:id="@+id/buttonEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            style="?attr/materialButtonOutlinedStyle"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="30dp"
             android:text="ویرایش"
@@ -91,7 +92,7 @@
         <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonDelete"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="wrap_content" style="?attr/materialButtonOutlinedStyle"
         app:icon="@drawable/ic_baseline_delete_forever_24"
         android:text="  حذف "
         app:layout_constraintBottom_toBottomOf="@+id/buttonEdit"
