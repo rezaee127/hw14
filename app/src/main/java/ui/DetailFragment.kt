@@ -40,19 +40,25 @@ class DetailFragment : Fragment() {
 
     private fun initView() {
         val id=requireArguments().getInt("id")
+        goneEditTexts()
 
         vModel.getWord(id).let {
-            binding.editTextWord.setText(it.word)
-            binding.editTextMeaning.setText(it.Meaning)
-            binding.editTextSynonyms.setText(it.synonyms)
-            binding.editTextExample.setText(it.example)
-            binding.editTextDescription.setText(it.description)
+            binding.textViewWord.text = it.word
+            binding.textViewMeaning.text = it.Meaning
+            binding.textViewSynonyms.text = it.synonyms
+            binding.textViewExample.text = it.example
+            binding.textViewDescription.text = it.description
         }
 
-        edit(id)
+        binding.buttonEdit.setOnClickListener {
+            edit(id)
+        }
         delete(id)
         back()
     }
+
+
+
 
     private fun back() {
         binding.buttonBack.setOnClickListener {
@@ -62,8 +68,27 @@ class DetailFragment : Fragment() {
 
 
     private fun edit(id:Int) {
-        binding.buttonEdit.setOnClickListener {
+        visibleEditTexts()
+        goneTextViews()
+        binding.buttonDelete.visibility=View.INVISIBLE
+        binding.buttonBack.visibility=View.GONE
 
+        vModel.getWord(id).let {
+            binding.editTextWord.setText(it.word)
+            binding.editTextMeaning.setText(it.Meaning)
+            binding.editTextSynonyms.setText(it.synonyms)
+            binding.editTextExample.setText(it.example)
+            binding.editTextDescription.setText(it.description)
+        }
+
+        binding.buttonBackToDetail.setOnClickListener {
+            binding.buttonDelete.visibility=View.VISIBLE
+            binding.buttonBack.visibility=View.VISIBLE
+            visibleTextViews()
+            initView()
+        }
+
+        binding.buttonEdit.setOnClickListener {
             when {
                 binding.editTextWord.text.isNullOrBlank() -> binding.editTextWord.error = "کلمه را وارد کنید"
                 binding.editTextMeaning.text.isNullOrBlank() -> binding.editTextMeaning.error = "معنی را وارد کنید"
@@ -71,13 +96,13 @@ class DetailFragment : Fragment() {
 
                 else -> {
                     vModel.update(Word(id, binding.editTextWord.text.toString(),
-                            binding.editTextMeaning.text.toString(),
-                            binding.editTextSynonyms.text.toString(),
-                            binding.editTextExample.text.toString(),
-                            binding.editTextDescription.text.toString()))
+                        binding.editTextMeaning.text.toString(),
+                        binding.editTextSynonyms.text.toString(),
+                        binding.editTextExample.text.toString(),
+                        binding.editTextDescription.text.toString()))
                     Toast.makeText(requireContext(), "ویرایش کلمه انجام شد", Toast.LENGTH_SHORT)
                         .show()
-                    findNavController().navigate(R.id.action_detailFragment_to_searchWordFragment)
+                    //findNavController().navigate(R.id.action_detailFragment_to_searchWordFragment)
                 }
             }
         }
@@ -91,5 +116,41 @@ class DetailFragment : Fragment() {
             findNavController().navigate(R.id.action_detailFragment_to_searchWordFragment)
         }
     }
+
+
+    private fun goneEditTexts() {
+        binding.editTextWord.visibility=View.GONE
+        binding.editTextMeaning.visibility=View.GONE
+        binding.editTextSynonyms.visibility=View.GONE
+        binding.editTextExample.visibility=View.GONE
+        binding.editTextDescription.visibility=View.GONE
+        binding.buttonBackToDetail.visibility=View.GONE
+    }
+
+    private fun visibleEditTexts() {
+        binding.editTextWord.visibility=View.VISIBLE
+        binding.editTextMeaning.visibility=View.VISIBLE
+        binding.editTextSynonyms.visibility=View.VISIBLE
+        binding.editTextExample.visibility=View.VISIBLE
+        binding.editTextDescription.visibility=View.VISIBLE
+        binding.buttonBackToDetail.visibility=View.VISIBLE
+    }
+
+    private fun goneTextViews(){
+        binding.textViewWord.visibility=View.GONE
+        binding.textViewMeaning.visibility=View.GONE
+        binding.textViewSynonyms.visibility=View.GONE
+        binding.textViewExample.visibility=View.GONE
+        binding.textViewDescription.visibility=View.GONE
+    }
+
+    private fun visibleTextViews(){
+        binding.textViewWord.visibility=View.VISIBLE
+        binding.textViewMeaning.visibility=View.VISIBLE
+        binding.textViewSynonyms.visibility=View.VISIBLE
+        binding.textViewExample.visibility=View.VISIBLE
+        binding.textViewDescription.visibility=View.VISIBLE
+    }
+
 
 }
