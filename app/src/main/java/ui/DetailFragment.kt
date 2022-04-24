@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.findNavController
 import com.example.hw14.R
 import com.example.hw14.databinding.FragmentDetailBinding
 import model.Word
@@ -55,9 +55,17 @@ class DetailFragment : Fragment() {
         }
         delete(id)
         back()
+        goToWikipedia()
+        }
     }
 
-
+    private fun goToWikipedia() {
+        binding.buttonGoToWikipedia.setOnClickListener {
+            val word= binding.textViewWord.text.toString()
+            val bundle=bundleOf("word" to  word)
+            findNavController().navigate(R.id.action_detailFragment_to_showWikipediaFragment, bundle)
+        }
+    }
 
 
     private fun back() {

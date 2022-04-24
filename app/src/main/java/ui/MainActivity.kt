@@ -1,9 +1,8 @@
 package ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import com.example.hw14.R
+import androidx.appcompat.app.AppCompatActivity
 import com.example.hw14.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -29,4 +28,14 @@ class MainActivity : AppCompatActivity() {
         }
 
     }
+
+
+//    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
+//        if (keyCode == KeyEvent.KEYCODE_MENU) {
+//            ShowWikipediaFragment().onMyKeyDown(keyCode,event)
+//        }
+//        return super.onKeyDown(keyCode, event)
+//    }
+//
+
 }
