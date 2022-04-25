@@ -64,7 +64,7 @@ class DetailFragment : Fragment() {
         binding.buttonGoToWikipedia.setOnClickListener {
             val word= binding.textViewWord.text.toString()
             val bundle=bundleOf("word" to  word)
-            findNavController().navigate(R.id.action_detailFragment_to_showWikipediaFragment, bundle)
+            findNavController().navigate(R.id.action_detailFragment_to_goToWikipediaFragment, bundle)
         }
     }
 
@@ -78,10 +78,7 @@ class DetailFragment : Fragment() {
 
     private fun edit(id:Int) {
         visibleEditTexts()
-        goneTextViews()
-        binding.buttonDelete.visibility=View.INVISIBLE
-        binding.buttonBack.visibility=View.GONE
-        binding.buttonRecord.visibility=View.VISIBLE
+        goneViews()
 
         vModel.getWord(id).let {
             binding.editTextWord.setText(it.word)
@@ -91,12 +88,7 @@ class DetailFragment : Fragment() {
             binding.editTextDescription.setText(it.description)
         }
 
-        binding.buttonBackToDetail.setOnClickListener {
-            binding.buttonDelete.visibility=View.VISIBLE
-            binding.buttonBack.visibility=View.VISIBLE
-            visibleTextViews()
-            initView()
-        }
+
 
         binding.buttonEdit.setOnClickListener {
             when {
@@ -115,6 +107,14 @@ class DetailFragment : Fragment() {
                     //findNavController().navigate(R.id.action_detailFragment_to_searchWordFragment)
                 }
             }
+        }
+
+        binding.buttonBackToDetail.setOnClickListener {
+            binding.buttonDelete.visibility=View.VISIBLE
+            binding.buttonBack.visibility=View.VISIBLE
+            binding.buttonGoToWikipedia.visibility=View.VISIBLE
+            visibleTextViews()
+            initView()
         }
     }
 
@@ -148,12 +148,17 @@ class DetailFragment : Fragment() {
         binding.buttonRecord.visibility=View.VISIBLE
     }
 
-    private fun goneTextViews(){
+    private fun goneViews(){
         binding.textViewWord.visibility=View.GONE
         binding.textViewMeaning.visibility=View.GONE
         binding.textViewSynonyms.visibility=View.GONE
         binding.textViewExample.visibility=View.GONE
         binding.textViewDescription.visibility=View.GONE
+
+        binding.buttonDelete.visibility=View.INVISIBLE
+        binding.buttonBack.visibility=View.GONE
+        binding.buttonGoToWikipedia.visibility=View.GONE
+        binding.buttonRecord.visibility=View.VISIBLE
     }
 
     private fun visibleTextViews(){

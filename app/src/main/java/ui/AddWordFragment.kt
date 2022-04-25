@@ -90,11 +90,11 @@ class AddWordFragment : Fragment() {
     private fun startRecord() {
         onRecord(flagStartRecording)
 
-        binding.buttonRecord.setIconTintResource(
-            when (flagStartRecording) {
-            true -> R.drawable.ic_baseline_mic_off_24
-            false -> R.drawable.ic_baseline_mic_24
+        binding.buttonRecord.setIconResource(when (flagStartRecording) {
+            true -> R.drawable.ic_baseline_mic_off_2
+            false -> R.drawable.ic_baseline_mic_2
         })
+
         binding.buttonRecord.text=
             when (flagStartRecording) {
                 true -> "قطع ضبط"

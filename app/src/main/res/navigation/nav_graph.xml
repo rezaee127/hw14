@@ -23,8 +23,8 @@
             android:id="@+id/action_detailFragment_to_searchWordFragment"
             app:destination="@id/searchWordFragment" />
         <action
-            android:id="@+id/action_detailFragment_to_showWikipediaFragment"
-            app:destination="@id/showWikipediaFragment" />
+            android:id="@+id/action_detailFragment_to_goToWikipediaFragment"
+            app:destination="@id/goToWikipediaFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchWordFragment"
@@ -39,8 +39,8 @@
             app:destination="@id/detailFragment" />
     </fragment>
     <fragment
-        android:id="@+id/showWikipediaFragment"
+        android:id="@+id/goToWikipediaFragment"
         android:name="ui.GoToWikipediaFragment"
-        android:label="fragment_show_wikipedia"
+        android:label="Wikipedia"
         tools:layout="@layout/fragment_go_to_wikipedia" />
 </navigation>
