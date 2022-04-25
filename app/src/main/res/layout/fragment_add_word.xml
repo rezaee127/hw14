@@ -1,76 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="ui.AddWordFragment"
-    android:orientation="vertical"
-    android:layout_margin="20dp">
-
+    android:layout_margin="20dp"
+    tools:context="ui.AddWordFragment">
 
     <EditText
         android:id="@+id/editTextWord"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:textDirection="rtl"
-        android:layout_marginTop="10dp"
-        android:hint="کلمه"
         android:ems="10"
-        android:inputType="textPersonName" />
+        android:hint="کلمه"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editTextMeaning"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:layout_weight="1"
-        android:textDirection="rtl"
-        android:layout_marginTop="20dp"
-        android:hint="معنی"
         android:ems="10"
-        android:inputType="textPersonName" />
+        android:hint="معنی"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextWord" />
 
     <EditText
         android:id="@+id/editTextSynonyms"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:layout_weight="1"
-        android:textDirection="rtl"
-        android:layout_marginTop="20dp"
-        android:hint="مترادف"
         android:ems="10"
-        android:inputType="textPersonName"/>
+        android:hint="مترادف"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextMeaning" />
 
     <EditText
         android:id="@+id/editTextExample"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:layout_weight="1"
-        android:textDirection="rtl"
-        android:layout_marginTop="20dp"
-        android:hint="مثال"
         android:ems="10"
-        android:inputType="textPersonName" />
+        android:hint="مثال"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextSynonyms" />
 
     <EditText
         android:id="@+id/editTextDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:layout_weight="1"
-        android:textDirection="rtl"
-        android:layout_marginTop="20dp"
-        android:hint="توضیحات"
         android:ems="10"
-        android:inputType="textPersonName" />
+        android:hint="توضیحات"
+        android:inputType="textPersonName"
+        app:layout_constraintTop_toBottomOf="@+id/editTextExample"
+        tools:layout_editor_absoluteX="0dp" />
+
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/button"
-        android:layout_width="match_parent"
+        android:id="@+id/buttonRecord"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        app:cornerRadius="30dp"
-        android:minHeight="50dp"
-        android:layout_marginVertical="30dp"
-        android:text="اضافه کردن کلمه" />
-</LinearLayout>
+        android:layout_marginEnd="28dp"
+        android:text="ضبط صدا"
+        app:cornerRadius="500dp"
+        app:icon="@drawable/ic_baseline_mic_2"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonSave"
+        app:layout_constraintEnd_toStartOf="@+id/buttonSave"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/buttonSave"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonSave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text=" ذخیره "
+        app:cornerRadius="500dp"
+        app:icon="@drawable/ic_baseline_save_24"
+        app:iconGravity="end"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonRecord"
+        app:layout_constraintTop_toBottomOf="@+id/editTextDescription" />
+
+    <androidx.constraintlayout.utils.widget.ImageFilterButton
+        android:id="@+id/buttonPlay"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="84dp"
+        android:layout_marginEnd="164dp"
+        android:background="@color/purple_502"
+        android:src="@drawable/ic_baseline_play_arrow_24"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextDescription" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
