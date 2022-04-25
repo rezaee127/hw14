@@ -3,7 +3,6 @@ package ui
 import android.Manifest
 import android.content.pm.PackageManager
 import android.media.MediaRecorder
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -11,9 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.hw14.R
@@ -24,11 +21,34 @@ import java.io.IOException
 
 
 class AddWordFragment : Fragment() {
-    lateinit var binding:FragmentAddWordBinding
-    val vModel: MainViewModel by activityViewModels()
+    private lateinit var binding:FragmentAddWordBinding
+    private val vModel: MainViewModel by activityViewModels()
+
     var flagStartRecording = true
     var voiceRecorded=false
     private var recorder: MediaRecorder? = null
+
+    private var permissionToRecordAccepted = false
+    private var permissions: Array<String> = arrayOf(Manifest.permission.RECORD_AUDIO)
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        permissionToRecordAccepted = if (requestCode == 200) {
+            grantResults[0] == PackageManager.PERMISSION_GRANTED
+        } else {
+            false
+        }
+        if (!permissionToRecordAccepted) {
+           // requireActivity().finishAffinity()
+         }
+    }
+
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -46,6 +66,7 @@ class AddWordFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        ActivityCompat.requestPermissions(requireActivity(), permissions, 200)
 
         initView()
     }
@@ -81,7 +102,7 @@ class AddWordFragment : Fragment() {
                 return@setOnClickListener
             }
             else{
-                requestPermissions()
+
                 startRecord()
             }
         }
@@ -138,57 +159,5 @@ class AddWordFragment : Fragment() {
         recorder = null
     }
 
-
-
-
-
-
-    private fun requestPermissions() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            when {
-                //if user already granted the permission
-                ContextCompat.checkSelfPermission(
-                    requireContext(),
-                    Manifest.permission.RECORD_AUDIO
-                ) == PackageManager.PERMISSION_GRANTED -> {
-                    Toast.makeText(
-                        requireContext(),
-                        "you have already granted this permission",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-                //if user already denied the permission once
-                ActivityCompat.shouldShowRequestPermissionRationale(
-                    requireActivity(),
-                    Manifest.permission.RECORD_AUDIO
-                ) -> {
-                }
-                else -> {
-                    requestPermissionLauncher.launch(
-                        Manifest.permission.RECORD_AUDIO
-                    )
-                }
-            }
-        }
-    }
-
-    private val requestPermissionLauncher =
-        registerForActivityResult(
-            ActivityResultContracts.RequestPermission()
-        ) { isGranted: Boolean ->
-            if (isGranted) {
-                Toast.makeText(
-                    requireContext(),
-                    "you granted this permission",
-                    Toast.LENGTH_SHORT
-                ).show()
-            } else {
-                Toast.makeText(
-                    requireContext(),
-                    "you denied this permission",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        }
 
 }
