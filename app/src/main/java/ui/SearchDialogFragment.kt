@@ -13,8 +13,8 @@ class SearchDialogFragment : DialogFragment() {
         return activity?.let {
             // Use the Builder class for convenient dialog construction
             val builder = AlertDialog.Builder(it)
-            builder.setMessage("کلمه مورد نظر در برنامه وجود ندارد")
-                .setPositiveButton("متوجه شدم",
+            builder.setMessage("The desired word does not exist")
+                .setPositiveButton("OK",
                     DialogInterface.OnClickListener { dialog, id ->
                         dismiss()
                     })

@@ -143,7 +143,8 @@ class DetailFragment : Fragment() {
             if (vModel.getWord(id).voiceRecorded){
                 fileName="${requireActivity().externalCacheDir?.absolutePath}/${vModel.getWord(id).word}.3gp"
                 startPlay()
-            }
+            }else
+                Toast.makeText(requireContext(),"برای این کلمه صدایی ضبط نشده است",Toast.LENGTH_SHORT).show()
         }
     }
 
