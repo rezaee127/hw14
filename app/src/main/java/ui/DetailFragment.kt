@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.example.hw14.R
 import com.example.hw14.databinding.FragmentDetailBinding
 import model.Word
@@ -56,8 +57,8 @@ class DetailFragment : Fragment() {
         delete(id)
         back()
         goToWikipedia()
-        }
     }
+
 
     private fun goToWikipedia() {
         binding.buttonGoToWikipedia.setOnClickListener {
@@ -80,6 +81,7 @@ class DetailFragment : Fragment() {
         goneTextViews()
         binding.buttonDelete.visibility=View.INVISIBLE
         binding.buttonBack.visibility=View.GONE
+        binding.buttonRecord.visibility=View.VISIBLE
 
         vModel.getWord(id).let {
             binding.editTextWord.setText(it.word)
@@ -133,6 +135,7 @@ class DetailFragment : Fragment() {
         binding.editTextExample.visibility=View.GONE
         binding.editTextDescription.visibility=View.GONE
         binding.buttonBackToDetail.visibility=View.GONE
+        binding.buttonRecord.visibility=View.GONE
     }
 
     private fun visibleEditTexts() {
@@ -142,6 +145,7 @@ class DetailFragment : Fragment() {
         binding.editTextExample.visibility=View.VISIBLE
         binding.editTextDescription.visibility=View.VISIBLE
         binding.buttonBackToDetail.visibility=View.VISIBLE
+        binding.buttonRecord.visibility=View.VISIBLE
     }
 
     private fun goneTextViews(){

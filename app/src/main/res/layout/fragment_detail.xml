@@ -9,7 +9,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="20dp">
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp">
 
         <TextView
             android:id="@+id/textViewWord"
@@ -21,15 +23,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonGoToWikipedia" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textViewMeaning"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="40dp"
-            android:gravity="center"
             android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:minHeight="40dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewWord" />
@@ -38,9 +40,9 @@
             android:id="@+id/textViewSynonyms"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="40dp"
-            android:gravity="center"
             android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:minHeight="40dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewMeaning" />
@@ -49,9 +51,9 @@
             android:id="@+id/textViewExample"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="40dp"
-            android:gravity="center"
             android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:minHeight="40dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewSynonyms" />
@@ -60,9 +62,9 @@
             android:id="@+id/textViewDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:minHeight="40dp"
-            android:gravity="center"
             android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:minHeight="40dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewExample" />
@@ -135,22 +137,22 @@
             android:id="@+id/buttonEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:cornerRadius="500dp"
+            android:layout_marginTop="32dp"
             android:text="ویرایش"
+            app:cornerRadius="500dp"
             app:icon="@drawable/ic_baseline_edit_24"
             app:iconGravity="end"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/buttonDelete"
-            app:layout_constraintTop_toBottomOf="@+id/editTextDescription" />
+            app:layout_constraintTop_toBottomOf="@+id/buttonPlay" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonDelete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:cornerRadius="500dp"
             android:text="  حذف "
+            app:cornerRadius="500dp"
             app:icon="@drawable/ic_baseline_delete_forever_24"
             app:layout_constraintBottom_toBottomOf="@+id/buttonEdit"
             app:layout_constraintEnd_toStartOf="@+id/buttonEdit"
@@ -161,13 +163,13 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonBack"
+            style="?attr/materialButtonOutlinedStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="?attr/materialButtonOutlinedStyle"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="30dp"
-            app:cornerRadius="500dp"
+            android:layout_marginBottom="50dp"
             android:text="بازگشت"
+            app:cornerRadius="500dp"
             app:icon="@drawable/ic_baseline_keyboard_return_24"
             app:layout_constraintEnd_toEndOf="@+id/editTextDescription"
             app:layout_constraintStart_toStartOf="@+id/editTextDescription"
@@ -186,20 +188,45 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/buttonEdit"
-            app:layout_constraintVertical_bias="0.0"  />
+            app:layout_constraintVertical_bias="0.0" />
+
+        <androidx.constraintlayout.utils.widget.ImageFilterButton
+            android:id="@+id/buttonPlay"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="24dp"
+            android:background="@color/purple_502"
+            android:src="@drawable/ic_baseline_play_arrow_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/buttonRecord"
+            app:layout_constraintTop_toBottomOf="@+id/editTextDescription" />
 
         <androidx.constraintlayout.utils.widget.ImageFilterButton
             android:id="@+id/buttonGoToWikipedia"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_marginTop="16dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:background="@color/purple_502"
             android:src="@drawable/w12"
-            android:text="Button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.211"
+            app:layout_constraintBottom_toBottomOf="@+id/buttonRecord"
+            app:layout_constraintEnd_toStartOf="@+id/buttonRecord"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/editTextDescription"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <androidx.constraintlayout.utils.widget.ImageFilterButton
+            android:id="@+id/buttonRecord"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@color/purple_502"
+            android:src="@drawable/ic_baseline_mic_24"
+            app:layout_constraintBottom_toBottomOf="@+id/buttonPlay"
+            app:layout_constraintEnd_toStartOf="@+id/buttonPlay"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/buttonGoToWikipedia"
+            app:layout_constraintTop_toTopOf="@+id/buttonPlay"
+            app:layout_constraintVertical_bias="1.0" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
