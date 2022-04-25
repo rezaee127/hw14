@@ -1,6 +1,8 @@
 package ui
 
+import android.media.MediaPlayer
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,11 +15,15 @@ import com.example.hw14.R
 import com.example.hw14.databinding.FragmentDetailBinding
 import model.Word
 import viewModels.MainViewModel
+import java.io.IOException
 
 
 class DetailFragment : Fragment() {
    lateinit var binding: FragmentDetailBinding
    val vModel: MainViewModel by activityViewModels()
+    var flagStartPlaying=true
+    private var fileName=""
+    private var player: MediaPlayer? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -57,7 +63,53 @@ class DetailFragment : Fragment() {
         delete(id)
         back()
         goToWikipedia()
+        playVoice(id)
     }
+
+    private fun playVoice(id:Int) {
+        binding.buttonPlay.setOnClickListener {
+            if (vModel.getWord(id).voiceRecorded){
+                fileName="${requireActivity().externalCacheDir?.absolutePath}/${vModel.getWord(id).word}.3gp"
+                startPlay()
+            }
+        }
+    }
+
+    private fun startPlay() {
+        onPlay(flagStartPlaying)
+        binding.buttonPlay.setImageResource(when (flagStartPlaying) {
+            true -> R.drawable.ic_baseline_stop_24
+            false -> R.drawable.ic_baseline_play_arrow_24
+        })
+        flagStartPlaying = !flagStartPlaying
+    }
+
+    private fun onPlay(start: Boolean) = if (start) {
+        startPlaying()
+    } else {
+        stopPlaying()
+    }
+
+    private fun startPlaying() {
+        player = MediaPlayer().apply {
+            try {
+                setDataSource(fileName)
+                prepare()
+                start()
+            } catch (e: IOException) {
+                Log.e("AudioRecordTest", "prepare() failed")
+            }
+        }
+    }
+
+    private fun stopPlaying() {
+        player?.release()
+        player = null
+    }
+
+
+
+
 
 
     private fun goToWikipedia() {
@@ -88,9 +140,7 @@ class DetailFragment : Fragment() {
             binding.editTextDescription.setText(it.description)
         }
 
-
-
-        binding.buttonEdit.setOnClickListener {
+       binding.buttonEdit.setOnClickListener {
             when {
                 binding.editTextWord.text.isNullOrBlank() -> binding.editTextWord.error = "کلمه را وارد کنید"
                 binding.editTextMeaning.text.isNullOrBlank() -> binding.editTextMeaning.error = "معنی را وارد کنید"

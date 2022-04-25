@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:layout_marginBottom="30dp">
 
         <TextView
@@ -29,7 +29,7 @@
             android:id="@+id/textViewMeaning"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:gravity="center"
             android:minHeight="40dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +40,7 @@
             android:id="@+id/textViewSynonyms"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:gravity="center"
             android:minHeight="40dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -51,7 +51,7 @@
             android:id="@+id/textViewExample"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:gravity="center"
             android:minHeight="40dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -62,7 +62,7 @@
             android:id="@+id/textViewDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:gravity="center"
             android:minHeight="40dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -137,7 +137,7 @@
             android:id="@+id/buttonEdit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="20dp"
             android:text="ویرایش"
             app:cornerRadius="500dp"
             app:icon="@drawable/ic_baseline_edit_24"
@@ -161,19 +161,6 @@
             app:layout_constraintTop_toTopOf="@+id/buttonEdit"
             app:layout_constraintVertical_bias="0.0" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/buttonBack"
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="50dp"
-            android:text="بازگشت"
-            app:cornerRadius="500dp"
-            app:icon="@drawable/ic_baseline_keyboard_return_24"
-            app:layout_constraintEnd_toEndOf="@+id/editTextDescription"
-            app:layout_constraintStart_toStartOf="@+id/editTextDescription"
-            app:layout_constraintTop_toBottomOf="@+id/buttonEdit" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonBackToDetail"
@@ -227,6 +214,20 @@
             app:layout_constraintStart_toEndOf="@+id/buttonGoToWikipedia"
             app:layout_constraintTop_toTopOf="@+id/buttonPlay"
             app:layout_constraintVertical_bias="1.0" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/buttonBack"
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="50dp"
+            android:text="بازگشت"
+            app:cornerRadius="500dp"
+            app:icon="@drawable/ic_baseline_keyboard_return_24"
+            app:layout_constraintEnd_toEndOf="@+id/editTextDescription"
+            app:layout_constraintStart_toStartOf="@+id/editTextDescription"
+            app:layout_constraintTop_toBottomOf="@+id/buttonEdit" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
