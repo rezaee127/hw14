@@ -1,6 +1,7 @@
 package ui
 
 import android.media.MediaPlayer
+import android.media.MediaRecorder
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -22,8 +23,11 @@ class DetailFragment : Fragment() {
    lateinit var binding: FragmentDetailBinding
    val vModel: MainViewModel by activityViewModels()
     var flagStartPlaying=true
+    var flagStartRecording = true
+    var voiceRecorded=false
     private var fileName=""
     private var player: MediaPlayer? = null
+    private var recorder: MediaRecorder? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -64,7 +68,75 @@ class DetailFragment : Fragment() {
         back()
         goToWikipedia()
         playVoice(id)
+        recordAudio()
     }
+
+
+
+    private fun recordAudio() {
+
+        binding.buttonRecord.setOnClickListener {
+            if (binding.editTextWord.text.toString()=="") {
+                Toast.makeText(requireContext(), "یک کلمه وارد کنید", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            else{
+                startRecord()
+            }
+        }
+    }
+
+    private fun startRecord() {
+        onRecord(flagStartRecording)
+
+        binding.buttonRecord.setImageResource(when (flagStartRecording) {
+            true -> R.drawable.ic_baseline_mic_off_24
+            false -> R.drawable.ic_baseline_mic_24
+        })
+
+        flagStartRecording = !flagStartRecording
+    }
+
+
+    private fun onRecord(start: Boolean) = if (start) {
+        startRecording()
+    } else {
+        stopRecording()
+    }
+
+    private fun startRecording() {
+        val name=binding.editTextWord.text.toString()
+        val fileName="${requireActivity().externalCacheDir?.absolutePath}/$name.3gp"
+        recorder = MediaRecorder().apply {
+            setAudioSource(MediaRecorder.AudioSource.MIC)
+            setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)
+            setOutputFile(fileName)
+            setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB)
+
+            try {
+                prepare()
+            } catch (e: IOException) {
+                Log.e("AudioRecordTest", "prepare() failed")
+            }
+
+            start()
+        }
+    }
+
+    private fun stopRecording() {
+        recorder?.apply {
+            stop()
+            release()
+        }
+        voiceRecorded=true
+        recorder = null
+    }
+
+
+
+
+
+
 
     private fun playVoice(id:Int) {
         binding.buttonPlay.setOnClickListener {
@@ -151,7 +223,7 @@ class DetailFragment : Fragment() {
                         binding.editTextMeaning.text.toString(),
                         binding.editTextSynonyms.text.toString(),
                         binding.editTextExample.text.toString(),
-                        binding.editTextDescription.text.toString()))
+                        binding.editTextDescription.text.toString(),voiceRecorded))
                     Toast.makeText(requireContext(), "ویرایش کلمه انجام شد", Toast.LENGTH_SHORT)
                         .show()
                     //findNavController().navigate(R.id.action_detailFragment_to_searchWordFragment)
