@@ -28,6 +28,10 @@ class MainViewModel(app: Application):AndroidViewModel(app) {
         return Repository.search(word)
     }
 
+    fun searchMeaning(Meaning:String):Int{
+        return Repository.searchMeaning(Meaning)
+    }
+
     fun getWord(id:Int): Word{
         return Repository.getWord(id)
     }

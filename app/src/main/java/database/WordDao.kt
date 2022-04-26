@@ -22,6 +22,8 @@ interface WordDao {
     @Query("SELECT id FROM word WHERE word = :word")
     fun search(word:String):Int
 
+    @Query("SELECT id FROM word WHERE meaning = :Meaning")
+    fun searchMeaning(Meaning:String):Int
 
     @Query("SELECT * FROM Word WHERE id IN(:id)")
     fun getWord(id:Int): Word

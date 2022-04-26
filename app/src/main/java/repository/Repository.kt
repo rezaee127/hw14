@@ -29,6 +29,10 @@ object Repository {
         return wordDao.search(word)
     }
 
+    fun searchMeaning(Meaning:String):Int{
+        return wordDao.searchMeaning(Meaning)
+    }
+
     fun getWord(id:Int): Word{
        return wordDao.getWord(id)
     }

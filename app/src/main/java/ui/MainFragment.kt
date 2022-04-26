@@ -63,11 +63,15 @@ class MainFragment : Fragment() {
         binding.buttonSearch.setOnClickListener {
             if (binding.editTextSearch.text.isNullOrBlank())
                 binding.editTextSearch.error="یک کلمه وارد کنید"
-            else if(vModel.searchWord(binding.editTextSearch.text.toString())==0){
+            else if(vModel.searchWord(binding.editTextSearch.text.toString())==0 && vModel.searchMeaning(binding.editTextSearch.text.toString())==0){
                 val dialog = SearchDialogFragment()
                 dialog.show(requireActivity().supportFragmentManager, "NoticeDialogFragment")
-            }else{
+            }else if(vModel.searchWord(binding.editTextSearch.text.toString())!=0){
                 val id=vModel.searchWord(binding.editTextSearch.text.toString())
+                val bundle= bundleOf("id" to id)
+                findNavController().navigate(R.id.action_searchWordFragment_to_detailFragment,bundle)
+            }else {
+                val id=vModel.searchMeaning(binding.editTextSearch.text.toString())
                 val bundle= bundleOf("id" to id)
                 findNavController().navigate(R.id.action_searchWordFragment_to_detailFragment,bundle)
             }
