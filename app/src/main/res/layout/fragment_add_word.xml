@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="20dp"
+    android:layout_height="match_parent"
+    android:layout_marginVertical="20dp"
+    android:layout_marginHorizontal="10dp"
     tools:context="ui.AddWordFragment">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <EditText
         android:id="@+id/editTextWord"
         android:layout_width="match_parent"
@@ -72,27 +76,40 @@
 
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/buttonRecord"
+        android:id="@+id/buttonFavorite"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="28dp"
+        android:text="علاقمندیها"
+        app:cornerRadius="500dp"
+        app:icon="@drawable/ic_baseline_favorite_border_24"
+        app:layout_constraintBottom_toBottomOf="@+id/buttonRecord"
+        app:layout_constraintEnd_toStartOf="@+id/buttonRecord"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/buttonRecord"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonRecord"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="ضبط صدا"
         app:cornerRadius="500dp"
         app:icon="@drawable/ic_baseline_mic_2"
         app:layout_constraintBottom_toBottomOf="@+id/buttonSave"
         app:layout_constraintEnd_toStartOf="@+id/buttonSave"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/buttonSave"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toEndOf="@+id/buttonFavorite"
+        app:layout_constraintTop_toTopOf="@+id/buttonSave" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text=" ذخیره "
+        android:layout_marginTop="28dp"
+        android:text="ذخیره"
         app:cornerRadius="500dp"
         app:icon="@drawable/ic_baseline_save_24"
         app:iconGravity="end"
@@ -101,17 +118,5 @@
         app:layout_constraintStart_toEndOf="@+id/buttonRecord"
         app:layout_constraintTop_toBottomOf="@+id/editTextDescription" />
 
-    <androidx.constraintlayout.utils.widget.ImageFilterButton
-        android:id="@+id/buttonPlay"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="84dp"
-        android:layout_marginEnd="164dp"
-        android:background="@color/purple_502"
-        android:src="@drawable/ic_baseline_play_arrow_24"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextDescription" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -23,7 +23,7 @@ import java.io.IOException
 class AddWordFragment : Fragment() {
     private lateinit var binding:FragmentAddWordBinding
     private val vModel: MainViewModel by activityViewModels()
-
+    var isFavorite=false
     var flagStartRecording = true
     var voiceRecorded=false
     private var recorder: MediaRecorder? = null
@@ -73,6 +73,12 @@ class AddWordFragment : Fragment() {
 
     private fun initView() {
         recordAudio()
+
+        binding.buttonFavorite.setOnClickListener {
+            binding.buttonFavorite.setIconResource(R.drawable.ic_baseline_favorite_24)
+            isFavorite=!isFavorite
+        }
+
         binding.buttonSave.setOnClickListener {
             when{
                 binding.editTextWord.text.isNullOrBlank()-> binding.editTextWord.error="کلمه را وارد کنید"
@@ -84,13 +90,12 @@ class AddWordFragment : Fragment() {
                    // binding.buttonSave.setOnClickListener {
                         vModel.insert(Word(0,binding.editTextWord.text.toString(),
                             binding.editTextMeaning.text.toString(),binding.editTextSynonyms.text.toString(),
-                            binding.editTextExample.text.toString(),binding.editTextDescription.text.toString(),voiceRecorded))
+                            binding.editTextExample.text.toString(),binding.editTextDescription.text.toString(),isFavorite,voiceRecorded))
                         Toast.makeText(requireActivity(),"کلمه ذخیره شد", Toast.LENGTH_SHORT).show()
                         findNavController().navigate(R.id.action_addWordFragment_to_searchWordFragment)
                      //}
                 }
             }
-
         }
     }
 

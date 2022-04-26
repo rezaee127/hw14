@@ -177,11 +177,12 @@
             app:layout_constraintTop_toTopOf="@+id/buttonEdit"
             app:layout_constraintVertical_bias="0.0" />
 
+
         <androidx.constraintlayout.utils.widget.ImageFilterButton
             android:id="@+id/buttonPlay"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:background="@color/purple_502"
             android:src="@drawable/ic_baseline_play_arrow_24"
             app:layout_constraintEnd_toEndOf="parent"
@@ -190,16 +191,29 @@
             app:layout_constraintTop_toBottomOf="@+id/editTextDescription" />
 
         <androidx.constraintlayout.utils.widget.ImageFilterButton
+            android:id="@+id/buttonFavorite"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@color/purple_502"
+            android:src="@drawable/ic_baseline_favorite_border_24"
+            app:layout_constraintBottom_toBottomOf="@+id/buttonPlay"
+            app:layout_constraintEnd_toStartOf="@+id/buttonGoToWikipedia"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/buttonPlay"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <androidx.constraintlayout.utils.widget.ImageFilterButton
             android:id="@+id/buttonGoToWikipedia"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:background="@color/purple_502"
             android:src="@drawable/w12"
-            app:layout_constraintBottom_toBottomOf="@+id/buttonRecord"
+            app:layout_constraintBottom_toBottomOf="@+id/buttonPlay"
             app:layout_constraintEnd_toStartOf="@+id/buttonRecord"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextDescription"
+            app:layout_constraintStart_toEndOf="@+id/buttonFavorite"
+            app:layout_constraintTop_toTopOf="@+id/buttonPlay"
             app:layout_constraintVertical_bias="1.0" />
 
         <androidx.constraintlayout.utils.widget.ImageFilterButton
@@ -212,8 +226,7 @@
             app:layout_constraintEnd_toStartOf="@+id/buttonPlay"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/buttonGoToWikipedia"
-            app:layout_constraintTop_toTopOf="@+id/buttonPlay"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toTopOf="@+id/buttonPlay" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/buttonBack"
