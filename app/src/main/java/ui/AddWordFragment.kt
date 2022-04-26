@@ -82,6 +82,7 @@ class AddWordFragment : Fragment() {
         binding.buttonSave.setOnClickListener {
             when{
                 binding.editTextWord.text.isNullOrBlank()-> binding.editTextWord.error="کلمه را وارد کنید"
+                vModel.searchWord(binding.editTextWord.text.toString())!=0->binding.editTextWord.error="این کلمه قبلا وارد شده است"
                 binding.editTextMeaning.text.isNullOrBlank()-> binding.editTextMeaning.error="معنی را وارد کنید"
                 binding.editTextSynonyms.text.isNullOrBlank()-> binding.editTextSynonyms.error="مترادف را وارد کنید"
 
