@@ -8,9 +8,22 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="purple_502">#AD1457</color>
-    <color name="purple_503">#DFA4B8</color>
-    <color name="purple_702">#6A1B9A</color>
+<!--    <color name="purple_502">#AD1457</color>-->
+<!--    <color name="purple_503">#DFA4B8</color>-->
+<!--    <color name="purple_702">#6A1B9A</color>-->
+<!--    <color name="white2">#D2E6E8</color>-->
+<!--    <color name="whiteBack2">#E4D6D4</color>-->
+
+
+<!--    <color name="purple_502">#212121</color>-->
+<!--    <color name="purple_503">#757575</color>-->
+<!--    <color name="purple_702">#AD1457</color>-->
+<!--    <color name="white2">#D2E6E8</color>-->
+<!--    <color name="whiteBack2">#EEEEEE</color>-->
+
+    <color name="purple_502">#880E4F</color>
+    <color name="purple_503">#BA880E4F</color>
+    <color name="purple_702">#AD1457</color>
     <color name="white2">#D2E6E8</color>
-    <color name="whiteBack2">#E4D6D4</color>
+    <color name="whiteBack2">#E1BEE7</color>
 </resources>

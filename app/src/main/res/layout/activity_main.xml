@@ -20,7 +20,7 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentContainerView"
         android:name="androidx.navigation.fragment.NavHostFragment"
-        android:background="@color/white"
+        android:background="@color/whiteBack2"
         app:defaultNavHost="true"
         android:visibility="gone"
         app:navGraph="@navigation/nav_graph"
