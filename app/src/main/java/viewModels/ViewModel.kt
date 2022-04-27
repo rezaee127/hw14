@@ -20,6 +20,10 @@ class MainViewModel(app: Application):AndroidViewModel(app) {
         Repository.insert(word)
     }
 
+    fun getWordList():List<Word>{
+        return Repository.getWordList()
+    }
+
     fun getCountWordLiveData(): LiveData<Int>{
         return  Repository.getCountWordLiveData()
     }

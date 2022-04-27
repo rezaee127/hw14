@@ -13,6 +13,10 @@ interface WordDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun update(word: Word)
 
+    @Query("SELECT * FROM Word" )
+    fun getWordList():List<Word>
+
+
     @Query("SELECT COUNT(*) FROM Word" )
     fun getCountWord():Int
 

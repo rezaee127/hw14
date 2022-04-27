@@ -21,6 +21,10 @@ object Repository {
         wordDao.insert(word)
     }
 
+    fun getWordList():List<Word>{
+        return wordDao.getWordList()
+    }
+
     fun getCountWordLiveData(): LiveData<Int>{
         return  wordDao.getCountWordLiveData()
     }
@@ -44,6 +48,8 @@ object Repository {
     fun deleteById(id:Int){
         wordDao.deleteById(id)
     }
+
+
 
 //    fun deleteWord(word:Word){
 //        wordDao.delete(word)
