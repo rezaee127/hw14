@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+    <data>
+        <variable
+            name="word"
+            type="model.Word" />
+
+    </data>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/wordRowItems"
@@ -19,7 +25,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:minHeight="40dp"
-        android:text="TextView"
+        android:text="@{word.meaning}"
         tools:layout_editor_absoluteX="242dp"
         tools:layout_editor_absoluteY="75dp" />
 
@@ -30,7 +36,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:minHeight="40dp"
-        android:text="TextView"
+        android:text="@{word.word}"
         tools:layout_editor_absoluteX="133dp"
         tools:layout_editor_absoluteY="75dp" />
 
