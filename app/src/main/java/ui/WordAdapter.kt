@@ -26,8 +26,8 @@ class WordAdapter(var onClickItem:(Int)->Unit) : ListAdapter<Word, WordAdapter.V
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
 
-        val inflater = LayoutInflater.from(viewGroup.context)
-        val binding= WordRowItemBinding.inflate(inflater)
+        val binding = WordRowItemBinding.inflate(LayoutInflater.from(viewGroup.context)
+            , viewGroup, false)
         return ViewHolder(binding)
 
     }
