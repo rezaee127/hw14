@@ -1,11 +1,13 @@
 package ui
 
 import android.annotation.SuppressLint
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -64,8 +66,13 @@ class MainFragment : Fragment() {
             if (binding.editTextSearch.text.isNullOrBlank())
                 binding.editTextSearch.error="یک کلمه وارد کنید"
             else if(vModel.searchWord(binding.editTextSearch.text.toString())==0 && vModel.searchMeaning(binding.editTextSearch.text.toString())==0){
-                val dialog = SearchDialogFragment()
-                dialog.show(requireActivity().supportFragmentManager, "NoticeDialogFragment")
+                val dialog = AlertDialog.Builder(requireContext())
+                dialog.setMessage("The desired word does not exist")
+                    .setPositiveButton("OK",
+                        DialogInterface.OnClickListener { dialog, id ->
+                        })
+                dialog.create()
+                dialog.show()
             }else if(vModel.searchWord(binding.editTextSearch.text.toString())!=0){
                 val id=vModel.searchWord(binding.editTextSearch.text.toString())
                 val bundle= bundleOf("id" to id)
