@@ -3,6 +3,7 @@ package ui
 import android.Manifest
 import android.content.pm.PackageManager
 import android.media.MediaRecorder
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -10,11 +11,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.hw14.R
 import com.example.hw14.databinding.FragmentAddWordBinding
+import com.google.android.material.snackbar.Snackbar
 import model.Word
 import viewModels.MainViewModel
 import java.io.IOException
@@ -28,23 +33,48 @@ class AddWordFragment : Fragment() {
     var voiceRecorded=false
     private var recorder: MediaRecorder? = null
 
-    private var permissionToRecordAccepted = false
-    private var permissions: Array<String> = arrayOf(Manifest.permission.RECORD_AUDIO)
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        permissionToRecordAccepted = if (requestCode == 200) {
-            grantResults[0] == PackageManager.PERMISSION_GRANTED
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
+        if (isGranted) {
+            onClickButtonRecord()
         } else {
-            false
+            Toast.makeText(requireContext(), "you denied this permission", Toast.LENGTH_SHORT).show()
         }
-        if (!permissionToRecordAccepted) {
-           // requireActivity().finishAffinity()
-         }
     }
+
+
+    private fun requestPermissions() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            when {
+                //if user already granted the permission
+                ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED -> {
+
+                }
+                //if user already denied the permission once
+                ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), Manifest.permission.RECORD_AUDIO) -> {
+                    //you can show rational massage in any form you want
+                    showRationDialog()
+                    //Snackbar.make( binding.buttonRecord, "we use camera to scan text.", Snackbar.LENGTH_LONG).show()
+                }
+                else -> {
+                    requestPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO)
+                }
+            }
+        }
+    }
+    private fun showRationDialog() {
+        val builder= AlertDialog.Builder(requireContext())
+        builder.apply {
+            setMessage("we need allow to record audio.")
+            setTitle("permission required")
+            setPositiveButton("ok"){dialog,which->
+                requestPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO)
+            }
+        }
+        builder.create().show()
+    }
+
+
 
 
 
@@ -66,7 +96,7 @@ class AddWordFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        ActivityCompat.requestPermissions(requireActivity(), permissions, 200)
+
 
         initView()
     }
@@ -88,13 +118,11 @@ class AddWordFragment : Fragment() {
 
                 else ->{
 
-                   // binding.buttonSave.setOnClickListener {
                         vModel.insert(Word(0,binding.editTextWord.text.toString(),
                             binding.editTextMeaning.text.toString(),binding.editTextSynonyms.text.toString(),
                             binding.editTextExample.text.toString(),binding.editTextDescription.text.toString(),isFavorite,voiceRecorded))
                         Toast.makeText(requireActivity(),"کلمه ذخیره شد", Toast.LENGTH_SHORT).show()
                         findNavController().navigate(R.id.action_addWordFragment_to_searchWordFragment)
-                     //}
                 }
             }
         }
@@ -103,14 +131,18 @@ class AddWordFragment : Fragment() {
     private fun recordAudio() {
 
         binding.buttonRecord.setOnClickListener {
-            if (binding.editTextWord.text.toString()=="") {
-                Toast.makeText(requireContext(), "یک کلمه وارد کنید", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-            else{
+            requestPermissions()
 
-                startRecord()
-            }
+        }
+    }
+
+    private fun onClickButtonRecord() {
+        if (binding.editTextWord.text.toString()=="") {
+            Toast.makeText(requireContext(), "یک کلمه وارد کنید", Toast.LENGTH_SHORT).show()
+            return
+        }
+        else{
+            startRecord()
         }
     }
 

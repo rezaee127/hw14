@@ -1,8 +1,11 @@
 package ui
 
+import android.Manifest
 import android.annotation.SuppressLint
+import android.content.pm.PackageManager
 import android.media.MediaPlayer
 import android.media.MediaRecorder
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -10,6 +13,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -30,6 +37,47 @@ class DetailFragment : Fragment() {
     private var fileName=""
     private var player: MediaPlayer? = null
     private var recorder: MediaRecorder? = null
+
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
+        if (isGranted) {
+            onClickButtonRecord()
+        } else {
+            Toast.makeText(requireContext(), "you denied this permission", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
+    private fun requestPermissions() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            when {
+                //if user already granted the permission
+                ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED -> {
+
+                }
+                //if user already denied the permission once
+                ActivityCompat.shouldShowRequestPermissionRationale(requireActivity(), Manifest.permission.RECORD_AUDIO) -> {
+                    //you can show rational massage in any form you want
+                    showRationDialog()
+                    //Snackbar.make( binding.buttonRecord, "we use camera to scan text.", Snackbar.LENGTH_LONG).show()
+                }
+                else -> {
+                    requestPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO)
+                }
+            }
+        }
+    }
+    private fun showRationDialog() {
+        val builder= AlertDialog.Builder(requireContext())
+        builder.apply {
+            setMessage("we need allow to record audio.")
+            setTitle("permission required")
+            setPositiveButton("ok"){dialog,which->
+                requestPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO)
+            }
+        }
+        builder.create().show()
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -166,15 +214,19 @@ class DetailFragment : Fragment() {
     private fun recordAudio() {
 
         binding.buttonRecord.setOnClickListener {
-            if (binding.editTextWord.text.toString()=="") {
-                Toast.makeText(requireContext(), "یک کلمه وارد کنید", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-            else{
-                startRecord()
-            }
+            requestPermissions()
         }
     }
+    fun onClickButtonRecord(){
+        if (binding.editTextWord.text.toString()=="") {
+            Toast.makeText(requireContext(), "یک کلمه وارد کنید", Toast.LENGTH_SHORT).show()
+            return
+        }
+        else{
+            startRecord()
+        }
+    }
+
 
     private fun startRecord() {
         onRecord(flagStartRecording)

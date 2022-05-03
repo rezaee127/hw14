@@ -71,8 +71,7 @@ class MainFragment : Fragment() {
                     .setPositiveButton("OK",
                         DialogInterface.OnClickListener { dialog, id ->
                         })
-                dialog.create()
-                dialog.show()
+                dialog.create().show()
             }else if(vModel.searchWord(binding.editTextSearch.text.toString())!=0){
                 val id=vModel.searchWord(binding.editTextSearch.text.toString())
                 val bundle= bundleOf("id" to id)
