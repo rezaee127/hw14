@@ -3,6 +3,8 @@ package ui
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
+import android.content.res.Resources
+import android.graphics.Color
 import android.media.MediaPlayer
 import android.media.MediaRecorder
 import android.os.Build
@@ -22,6 +24,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.hw14.R
 import com.example.hw14.databinding.FragmentDetailBinding
+import com.google.android.material.snackbar.Snackbar
 import model.Word
 import viewModels.MainViewModel
 import java.io.IOException
@@ -200,9 +203,25 @@ class DetailFragment : Fragment() {
 
     private fun delete(id:Int){
         binding.buttonDelete.setOnClickListener {
-            vModel.deleteById(id)
-            Toast.makeText(requireContext(),"حذف کلمه انجام شد", Toast.LENGTH_SHORT).show()
-            findNavController().navigate(R.id.action_detailFragment_to_searchWordFragment)
+
+
+            val snkbr = Snackbar.make(binding.detailFragment, "آیا میخواهید که کلمه را حذف کنید؟",
+                Snackbar.LENGTH_INDEFINITE)
+
+            snkbr.duration = 9000
+
+            snkbr.setAction("بله",  View.OnClickListener {
+                vModel.deleteById(id)
+                Toast.makeText(requireContext(),"حذف کلمه انجام شد", Toast.LENGTH_SHORT).show()
+                findNavController().navigate(R.id.action_detailFragment_to_searchWordFragment)
+                snkbr.dismiss()
+            })
+
+            .setTextColor(resources.getColor(R.color.whiteBack2))
+            .setActionTextColor(resources.getColor(R.color.white))
+            .setBackgroundTint(resources.getColor(R.color.gray))
+            .show()
+
         }
     }
 
