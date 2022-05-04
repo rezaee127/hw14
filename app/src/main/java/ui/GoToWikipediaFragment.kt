@@ -2,9 +2,7 @@ package ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import com.example.hw14.databinding.FragmentGoToWikipediaBinding
@@ -45,6 +43,15 @@ class GoToWikipediaFragment : Fragment() {
 
         binding.webView.settings.javaScriptEnabled = true
         binding.webView.webViewClient = WebViewClient()
+
+        binding.webView.canGoBack()
+        binding.webView.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_BACK && event.action == MotionEvent.ACTION_UP && binding.webView.canGoBack()) {
+                binding.webView.goBack()
+                return@OnKeyListener true
+            }
+            false
+        })
     }
 
 
