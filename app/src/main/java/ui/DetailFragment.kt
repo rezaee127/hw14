@@ -206,7 +206,7 @@ class DetailFragment : Fragment() {
 
 
             val snkbr = Snackbar.make(binding.detailFragment, "آیا میخواهید که کلمه را حذف کنید؟",
-                Snackbar.LENGTH_INDEFINITE)
+                Snackbar.LENGTH_LONG)
 
             snkbr.duration = 9000
 
