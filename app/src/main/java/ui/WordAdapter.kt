@@ -5,23 +5,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintSet
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.hw14.R
 import model.Word
 
-class WordAdapter(var onClickItem:(Int)->Unit) : ListAdapter<Word, WordAdapter.ViewHolder>(WordDiffCallback) {
+class WordAdapter(var onClickItem: (Int) -> Unit) :
+    ListAdapter<Word, WordAdapter.ViewHolder>(WordDiffCallback) {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val textViewWord=view.findViewById<TextView>(R.id.textViewWord)
-        val textViewMeaning=view.findViewById<TextView>(R.id.textViewMeaning)
-        val wordRowItems=view.findViewById<View>(R.id.wordRowItems)
+        val textViewWord = view.findViewById<TextView>(R.id.textViewWord)
+        val textViewMeaning = view.findViewById<TextView>(R.id.textViewMeaning)
+        val wordRowItems = view.findViewById<View>(R.id.wordRowItems)
 
-        fun bind(word:Word,onClickItem: (Int) -> Unit){
-            textViewWord.text=word.word
-            textViewMeaning.text=word.Meaning
+        fun bind(word: Word, onClickItem: (Int) -> Unit) {
+            textViewWord.text = word.word
+            textViewMeaning.text = word.Meaning
             wordRowItems.setOnClickListener {
                 onClickItem(word.id)
             }
@@ -40,7 +40,7 @@ class WordAdapter(var onClickItem:(Int)->Unit) : ListAdapter<Word, WordAdapter.V
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
 
         //viewHolder.buttonDoctorName.text = dataSet[position].name
-        viewHolder.bind( getItem(position),onClickItem)
+        viewHolder.bind(getItem(position), onClickItem)
 
     }
 
