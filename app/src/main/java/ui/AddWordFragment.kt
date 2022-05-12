@@ -5,12 +5,12 @@ import android.content.pm.PackageManager
 import android.media.MediaRecorder
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.hw14.R
@@ -80,23 +80,26 @@ class AddWordFragment : Fragment() {
         }
 
         binding.buttonSave.setOnClickListener {
-            when{
-                binding.editTextWord.text.isNullOrBlank()-> binding.editTextWord.error="کلمه را وارد کنید"
-                vModel.searchWord(binding.editTextWord.text.toString())!=0->binding.editTextWord.error="این کلمه قبلا وارد شده است"
-                binding.editTextMeaning.text.isNullOrBlank()-> binding.editTextMeaning.error="معنی را وارد کنید"
-                binding.editTextSynonyms.text.isNullOrBlank()-> binding.editTextSynonyms.error="مترادف را وارد کنید"
+            vModel.searchWord(binding.editTextWord.text.toString()).observe(viewLifecycleOwner){wordId->
+                when{
+                    binding.editTextWord.text.isNullOrBlank()-> binding.editTextWord.error="کلمه را وارد کنید"
+                    wordId!=null->binding.editTextWord.error="این کلمه قبلا وارد شده است"
+                    binding.editTextMeaning.text.isNullOrBlank()-> binding.editTextMeaning.error="معنی را وارد کنید"
+                    binding.editTextSynonyms.text.isNullOrBlank()-> binding.editTextSynonyms.error="مترادف را وارد کنید"
 
-                else ->{
+                    else ->{
 
-                   // binding.buttonSave.setOnClickListener {
+                        // binding.buttonSave.setOnClickListener {
                         vModel.insert(Word(0,binding.editTextWord.text.toString(),
                             binding.editTextMeaning.text.toString(),binding.editTextSynonyms.text.toString(),
                             binding.editTextExample.text.toString(),binding.editTextDescription.text.toString(),isFavorite,voiceRecorded))
                         Toast.makeText(requireActivity(),"کلمه ذخیره شد", Toast.LENGTH_SHORT).show()
                         findNavController().navigate(R.id.action_addWordFragment_to_searchWordFragment)
-                     //}
+                        //}
+                    }
                 }
             }
+
         }
     }
 

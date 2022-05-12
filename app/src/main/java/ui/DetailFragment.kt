@@ -5,12 +5,12 @@ import android.media.MediaPlayer
 import android.media.MediaRecorder
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.hw14.R
@@ -56,7 +56,7 @@ class DetailFragment : Fragment() {
         val id=requireArguments().getInt("id")
         goneEditTexts()
 
-        vModel.getWord(id).let {
+        vModel.getWord(id).observe(viewLifecycleOwner){
             binding.textViewWord.text = "کلمه : ${it.word}"
             binding.textViewMeaning.text ="معنی : ${it.Meaning}"
             binding.textViewSynonyms.text ="مترادف : ${it.synonyms}"
@@ -81,7 +81,7 @@ class DetailFragment : Fragment() {
         visibleEditTexts()
         goneViews()
 
-        vModel.getWord(id).let {
+        vModel.getWord(id).observe(viewLifecycleOwner){
             binding.editTextWord.setText( it.word)
             binding.editTextMeaning.setText( it.Meaning)
             binding.editTextSynonyms.setText( it.synonyms)
@@ -136,8 +136,11 @@ class DetailFragment : Fragment() {
 
     private fun goToWikipedia(id:Int) {
         binding.buttonGoToWikipedia.setOnClickListener {
-            val word= vModel.getWord(id).word
-            val bundle=bundleOf("word" to  word)
+            var wordToWikiPedia= ""
+                vModel.getWord(id).observe(viewLifecycleOwner){
+                    wordToWikiPedia=it.word
+                }
+            val bundle=bundleOf("word" to  wordToWikiPedia)
             findNavController().navigate(R.id.action_detailFragment_to_goToWikipediaFragment, bundle)
         }
     }
@@ -234,11 +237,14 @@ class DetailFragment : Fragment() {
 
     private fun playVoice(id:Int) {
         binding.buttonPlay.setOnClickListener {
-            if (vModel.getWord(id).voiceRecorded){
-                fileName="${requireActivity().externalCacheDir?.absolutePath}/${vModel.getWord(id).word}.3gp"
-                startPlay()
-            }else
-                Toast.makeText(requireContext(),"برای این کلمه صدایی ضبط نشده است",Toast.LENGTH_SHORT).show()
+            vModel.getWord(id).observe(viewLifecycleOwner){
+                if (it.voiceRecorded){
+                    fileName="${requireActivity().externalCacheDir?.absolutePath}/${it.word}.3gp"
+                    startPlay()
+                }else
+                    Toast.makeText(requireContext(),"برای این کلمه صدایی ضبط نشده است",Toast.LENGTH_SHORT).show()
+            }
+
         }
     }
 
