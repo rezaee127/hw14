@@ -40,7 +40,10 @@ class MainFragment : Fragment() {
     private fun setRecyclerView() {
         val wordAdapter = WordAdapter({ goToDetailFragment(it) })
         binding.recyclerView.adapter = wordAdapter
-        wordAdapter.submitList(vModel.getWordList())
+        vModel.getWordList().observe(requireActivity()){
+            wordAdapter.submitList(it)
+        }
+
     }
 
 
@@ -71,8 +74,9 @@ class MainFragment : Fragment() {
                 binding.editTextSearch.error = "یک کلمه وارد کنید"
             else {
                 vModel.searchMeaning(binding.editTextSearch.text.toString()).observe(viewLifecycleOwner){ meaningId->
+
                     vModel.searchWord(binding.editTextSearch.text.toString()).observe(viewLifecycleOwner){ wordId->
-                        if (wordId == 0 && meaningId == 0) {
+                        if (wordId == null && meaningId == null) {
                             val dialog = AlertDialog.Builder(requireContext())
                             dialog.setMessage("The desired word does not exist")
                                 .setPositiveButton("OK",
@@ -80,7 +84,7 @@ class MainFragment : Fragment() {
                                     })
                             dialog.create()
                             dialog.show()
-                        } else if (wordId != 0) {
+                        } else if (wordId != null) {
                             //val id = vModel.searchWord(binding.editTextSearch.text.toString())
                             goToDetailFragment(wordId)
                         } else {
@@ -88,9 +92,7 @@ class MainFragment : Fragment() {
                             goToDetailFragment(meaningId)
                         }
                     }
-
                 }
-
             }
         }
     }

@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import database.AppDatabase
 import database.WordDao
-import kotlinx.coroutines.runBlocking
 import model.Word
 
 object Repository {
@@ -22,12 +21,9 @@ object Repository {
         wordDao.insert(word)
     }
 
-    fun getWordList():List<Word>{
-        var wordList=listOf<Word>()
-        runBlocking {
-            wordList=wordDao.getWordList()
-        }
-        return wordList
+    suspend fun getWordList():List<Word>{
+        return wordDao.getWordList()
+
     }
 
     fun getCountWordLiveData(): LiveData<Int>{

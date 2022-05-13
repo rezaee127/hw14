@@ -139,9 +139,10 @@ class DetailFragment : Fragment() {
             var wordToWikiPedia= ""
                 vModel.getWord(id).observe(viewLifecycleOwner){
                     wordToWikiPedia=it.word
+                    val bundle=bundleOf("word" to  wordToWikiPedia)
+                    findNavController().navigate(R.id.action_detailFragment_to_goToWikipediaFragment, bundle)
                 }
-            val bundle=bundleOf("word" to  wordToWikiPedia)
-            findNavController().navigate(R.id.action_detailFragment_to_goToWikipediaFragment, bundle)
+
         }
     }
 
