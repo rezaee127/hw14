@@ -1,4 +1,4 @@
-package ui
+package com.example.hw14.ui
 
 import android.annotation.SuppressLint
 import android.content.DialogInterface
@@ -13,7 +13,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.hw14.R
 import com.example.hw14.databinding.FragmentMainBinding
-import viewModels.MainViewModel
+import com.example.hw14.viewModels.MainViewModel
 
 
 class MainFragment : Fragment() {

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_marginVertical="20dp"
     android:layout_marginHorizontal="10dp"
-    tools:context="ui.AddWordFragment">
+    tools:context="com.example.hw14.ui.AddWordFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

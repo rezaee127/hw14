@@ -1,4 +1,4 @@
-package ui
+package com.example.hw14.ui
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -19,9 +19,8 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.hw14.R
 import com.example.hw14.databinding.FragmentAddWordBinding
-import com.google.android.material.snackbar.Snackbar
-import model.Word
-import viewModels.MainViewModel
+import com.example.hw14.model.Word
+import com.example.hw14.viewModels.MainViewModel
 import java.io.IOException
 
 

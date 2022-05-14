@@ -1,10 +1,10 @@
-package repository
+package com.example.hw14.repository
 
 import android.content.Context
 import androidx.lifecycle.LiveData
-import database.AppDatabase
-import database.WordDao
-import model.Word
+import com.example.hw14.database.AppDatabase
+import com.example.hw14.database.WordDao
+import com.example.hw14.model.Word
 
 object Repository {
     lateinit var db: AppDatabase

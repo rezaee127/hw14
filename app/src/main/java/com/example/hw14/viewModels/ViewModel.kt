@@ -1,10 +1,10 @@
-package viewModels
+package com.example.hw14.viewModels
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import model.Word
-import repository.Repository
+import com.example.hw14.model.Word
+import com.example.hw14.repository.Repository
 
 class MainViewModel(app: Application):AndroidViewModel(app) {
 

@@ -57,7 +57,7 @@ dependencies {
     //noinspection GradleDependency
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
     //noinspection GradleDependency
-    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-com.example.hw14.ui-ktx:$nav_version")
     //noinspection GradleDependency
     implementation("androidx.navigation:navigation-dynamic-features-fragment:$nav_version")
 

@@ -1,4 +1,4 @@
-package ui
+package com.example.hw14.ui
 
 import android.os.Bundle
 import android.view.View

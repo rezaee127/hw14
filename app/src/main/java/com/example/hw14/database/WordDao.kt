@@ -1,8 +1,8 @@
-package database
+package com.example.hw14.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import model.Word
+import com.example.hw14.model.Word
 
 
 @Dao

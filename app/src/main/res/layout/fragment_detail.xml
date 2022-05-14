@@ -5,7 +5,7 @@
     android:id="@+id/detailFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ui.DetailFragment">
+    tools:context="com.example.hw14.ui.DetailFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

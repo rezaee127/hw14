@@ -1,10 +1,10 @@
-package database
+package com.example.hw14.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import model.Word
+import com.example.hw14.model.Word
 
 
 @Database(entities = [Word::class], version = 3)

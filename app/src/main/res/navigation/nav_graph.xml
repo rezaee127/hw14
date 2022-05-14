@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/addWordFragment"
-        android:name="ui.AddWordFragment"
+        android:name="com.example.hw14.ui.AddWordFragment"
         android:label="Add Word"
         tools:layout="@layout/fragment_add_word" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
-        android:name="ui.DetailFragment"
+        android:name="com.example.hw14.ui.DetailFragment"
         android:label="Detail"
         tools:layout="@layout/fragment_detail" >
         <action
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/searchWordFragment"
-        android:name="ui.MainFragment"
+        android:name="com.example.hw14.ui.MainFragment"
         android:label="Search Word"
         tools:layout="@layout/fragment_main" >
         <action
@@ -40,7 +40,7 @@
     </fragment>
     <fragment
         android:id="@+id/goToWikipediaFragment"
-        android:name="ui.GoToWikipediaFragment"
+        android:name="com.example.hw14.ui.GoToWikipediaFragment"
         android:label="Wikipedia"
         tools:layout="@layout/fragment_go_to_wikipedia" />
 </navigation>

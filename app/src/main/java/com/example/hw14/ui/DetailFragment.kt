@@ -1,10 +1,8 @@
-package ui
+package com.example.hw14.ui
 
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
-import android.content.res.Resources
-import android.graphics.Color
 import android.media.MediaPlayer
 import android.media.MediaRecorder
 import android.os.Build
@@ -25,8 +23,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.hw14.R
 import com.example.hw14.databinding.FragmentDetailBinding
 import com.google.android.material.snackbar.Snackbar
-import model.Word
-import viewModels.MainViewModel
+import com.example.hw14.model.Word
+import com.example.hw14.viewModels.MainViewModel
 import java.io.IOException
 
 
